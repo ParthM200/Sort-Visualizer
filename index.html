@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sort Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════ WELCOME -->
+<div id="welcome-screen" class="screen active">
+  <div class="bg-layer">
+    <div class="dot-grid"></div>
+    <div class="glow-orb"></div>
+  </div>
+
+  <div class="welcome-scroll">
+    <div class="welcome-card">
+
+      <div class="welcome-header">
+        <h1>Sort Visualizer</h1>
+        <p class="subtitle">Race two algorithms side by side</p>
+        <div class="accent-bar"></div>
+      </div>
+
+      <div class="section-label">Pick two algorithms to race</div>
+      <div class="algo-grid" id="algo-grid"></div>
+      <div class="pick-hint" id="pick-hint">Select 2 algorithms &nbsp;(0 / 2)</div>
+
+      <div class="controls-section">
+        <div class="control-row">
+          <label>Array Size <span class="val" id="size-val">50</span></label>
+          <input type="range" id="size-slider" min="10" max="150" value="50">
+        </div>
+        <div class="control-row">
+          <label>Speed <span class="val" id="speed-val">Medium</span></label>
+          <input type="range" id="speed-slider" min="1" max="5" value="3">
+        </div>
+        <div class="control-row">
+          <label>Array Pattern</label>
+          <div class="pattern-row" id="pattern-row">
+            <button class="pattern-btn active" data-pattern="random">Random</button>
+            <button class="pattern-btn" data-pattern="reversed">Reversed</button>
+            <button class="pattern-btn" data-pattern="nearly">Nearly Sorted</button>
+            <button class="pattern-btn" data-pattern="few">Few Unique</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="visualize-btn" id="visualize-btn" disabled>Visualize →</button>
+
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ VISUALIZER -->
+<div id="visualizer-screen" class="screen">
+  <div class="bg-layer">
+    <div class="dot-grid"></div>
+  </div>
+
+  <header class="viz-header">
+    <div class="viz-title-group">
+      <span class="viz-title-text">Sort Visualizer</span>
+      <span class="viz-vs-label" id="viz-vs-label"></span>
+    </div>
+    <div class="viz-controls">
+      <button class="ctrl-btn primary" id="btn-play">⏸ Pause</button>
+      <button class="ctrl-btn ghost"   id="btn-step">⏭ Step</button>
+      <button class="ctrl-btn ghost"   id="btn-restart">↺ Restart</button>
+      <button class="ctrl-btn ghost"   id="btn-new">⬡ New Array</button>
+      <button class="ctrl-btn ghost"   id="btn-back">← Back</button>
+    </div>
+  </header>
+
+  <div class="panels-container">
+
+    <!-- LEFT PANEL -->
+    <div class="sort-panel" id="panel-left">
+      <div class="panel-header">
+        <div class="panel-title-row">
+          <span class="panel-name" id="left-name">—</span>
+          <div class="panel-badges">
+            <span class="bigo-badge" id="left-bigo"></span>
+            <span class="status-badge ready" id="left-status">Ready</span>
+          </div>
+        </div>
+        <div class="bigo-detail" id="left-detail"></div>
+      </div>
+      <canvas class="sort-canvas" id="canvas-left"></canvas>
+      <div class="pseudo-panel" id="pseudo-left"></div>
+      <div class="stats-row">
+        <div class="stat-card blue"><span class="stat-val" id="left-cmp">0</span><span class="stat-lbl">Comparisons</span></div>
+        <div class="stat-card red"><span class="stat-val" id="left-swp">0</span><span class="stat-lbl">Swaps</span></div>
+        <div class="stat-card green"><span class="stat-val" id="left-time">0ms</span><span class="stat-lbl">Time</span></div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="sort-panel" id="panel-right">
+      <div class="panel-header">
+        <div class="panel-title-row">
+          <span class="panel-name" id="right-name">—</span>
+          <div class="panel-badges">
+            <span class="bigo-badge" id="right-bigo"></span>
+            <span class="status-badge ready" id="right-status">Ready</span>
+          </div>
+        </div>
+        <div class="bigo-detail" id="right-detail"></div>
+      </div>
+      <canvas class="sort-canvas" id="canvas-right"></canvas>
+      <div class="pseudo-panel" id="pseudo-right"></div>
+      <div class="stats-row">
+        <div class="stat-card blue"><span class="stat-val" id="right-cmp">0</span><span class="stat-lbl">Comparisons</span></div>
+        <div class="stat-card red"><span class="stat-val" id="right-swp">0</span><span class="stat-lbl">Swaps</span></div>
+        <div class="stat-card green"><span class="stat-val" id="right-time">0ms</span><span class="stat-lbl">Time</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/pseudocode.js"></script>
+<script src="js/algorithms.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
